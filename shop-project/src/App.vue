@@ -31,19 +31,18 @@
 
 
 
-<template>
-  <div id="app" class="max-w-4xl mx-auto p-4 font-sans">
-    <nav class="mb-6 flex gap-6 border-b border-gray-300 pb-2">
-      <RouterLink to="/" class="text-blue-600 font-semibold hover:text-blue-800">خانه</RouterLink>
-      <RouterLink to="/shop" class="text-blue-600 font-semibold hover:text-blue-800">فروشگاه</RouterLink>
-      <RouterLink to="/cart" class="text-blue-600 font-semibold hover:text-blue-800">سبد خرید</RouterLink>
-      <RouterLink to="/checkout" class="text-blue-600 font-semibold hover:text-blue-800">تسویه حساب</RouterLink>
-    </nav>
 
+<template>
+  <div id="app" dir="rtl" class=" font-sans">
+    <Header/>
     <main class="min-h-[400px]">
       <RouterView />
     </main>
+    <Footer/>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Header from "./layouts/Header.vue";
+import Footer from "./layouts/Footer.vue";
+</script>
