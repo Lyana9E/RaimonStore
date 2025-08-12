@@ -1,6 +1,6 @@
 
 <<template>
-  <div class="bg-primary text-white">
+  <div class="bg-primary text-white rounded-b ">
     <div class="container mx-auto grid grid-rows-2 p-5">
 
       <header
