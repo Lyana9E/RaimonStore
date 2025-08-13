@@ -1,24 +1,26 @@
 <template>
-  <Carousel :autoplay="autoplay" :wrapAround="wrapAround" :transition="transition" :dir="dir">
+  <Carousel v-bind="$attrs">
     <slot name="slides"></slot>
 
     <template #addons>
       <slot name="pagination">
         <Pagination />
       </slot>
+      <slot v-if="withNavigation" name="navigation">
+        <Navigation />
+      </slot>
     </template>
   </Carousel>
 </template>
 
 <script setup lang="ts">
-import { Carousel, Pagination } from 'vue3-carousel';
+import { Carousel, Pagination, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 
-// Props برای تنظیمات عمومی اسلایدر
 defineProps({
   autoplay: {
     type: Number,
-    default: 3000,
+    default: 5000,
   },
   wrapAround: {
     type: Boolean,
@@ -32,12 +34,18 @@ defineProps({
     type: String,
     default: 'rtl',
   },
+  withNavigation: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
+
+
+
 <style scoped>
-/* استایل‌های Pagination همچنان از طریق ::v-deep مدیریت می‌شوند */
-::v-deep(.carousel__pagination-button) {
+:deep(.carousel__pagination-button) {
   background-color: rgba(255, 255, 255, 0.5) !important;
   border-radius: 50%;
   width: 10px;
@@ -45,7 +53,20 @@ defineProps({
   margin: 0 4px;
 }
 
-::v-deep(.carousel__pagination-button--active) {
+:deep(.carousel__pagination-button--active) {
   background-color: #fff !important;
+}
+
+:deep(.carousel__prev),
+:deep(.carousel__next) {
+  box-sizing: content-box;
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+:deep(.carousel__prev:hover),
+:deep(.carousel__next:hover) {
+  opacity: 1;
 }
 </style>
