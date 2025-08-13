@@ -53,9 +53,12 @@
         <div class="text-2xl font-bold mb-4 sm:mb-0">
           مجموع کل: <span class="text-green-600">${{ cartStore.totalPrice.toFixed(2) }}</span>
         </div>
-        <a-button type="primary" size="large" class="bg-gray-800 hover:bg-gray-600 transition-colors">
-          ادامه به پرداخت
-        </a-button>
+        <router-link to="/checkout">
+          <a-button type="primary" size="large" class="bg-gray-800 hover:bg-gray-600 transition-colors">
+            ادامه به پرداخت
+          </a-button>
+        </router-link>
+
       </div>
     </div>
   </div>
