@@ -11,7 +11,8 @@ export default {
         'second':'#9a8c98',
         'third': '#c9ada7',
         'gray': '#4a4e69',
-        'light':'#f2e9e4'
+        'light':'#f2e9e4',
+        'darkBlue':'#003554'
       }
     },
   },

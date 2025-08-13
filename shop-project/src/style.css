@@ -7,5 +7,13 @@
     --color-third: #c9ada7;
     --color-gray: #4a4e69;
     --color-light: #f2e9e4;
+    --color-DarkBlue: #003554;
+    --color-light2: #fde4cf;
+    --color-light3: #cfbaf0;
+
+
 }
 
+body {
+    @apply bg-light;
+}
