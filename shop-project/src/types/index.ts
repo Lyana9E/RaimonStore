@@ -15,3 +15,16 @@ export interface Product {
 export interface CartItem extends Product {
     quantity: number;
 }
+
+
+
+export interface CheckoutFormState {
+    fullName: string;
+    address: string;
+    phoneNumber: string;
+}
+
+export interface OrderResponse {
+    success: boolean;
+    orderId: string;
+}
