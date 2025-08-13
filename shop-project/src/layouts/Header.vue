@@ -1,93 +1,67 @@
 
-<<template>
-  <div class="bg-primary text-white rounded-b ">
-    <div class="container mx-auto grid grid-rows-2 p-5">
+<template>
+  <div class="bg-second text-white shadow-lg text-xl">
+    <div class="container mx-auto p-4 flex items-center justify-between">
+      <router-link to="/" class="flex-shrink-0">
+        <img
+            src="/logo/Logo.png"
+            alt="لوگوی فروشگاه من"
+            class="h-16 w-16 rounded-full object-cover"
+        />
+      </router-link>
 
-      <header
-          class="flex items-center justify-between border-b p-2"
-      >
-          <div class="flex items-center space-x-4">
-            <router-link to="/" class="flex-shrink-0">
-              <img
-                  src="/logo/Logo.png"
-                  alt="لوگوی فروشگاه من"
-                  class="h-12 w-12 rounded-full object-cover"
-              />
+      <nav class="hidden md:block">
+        <ul class="flex justify-between gap-10 space-x-8 space-x-reverse font-medium">
+          <li>
+            <router-link
+                to="/"
+                class="hover:text-primary transition-colors duration-200"
+            >
+              خانه
             </router-link>
-          </div>
+          </li>
+          <li>
+            <router-link
+                to="/shop"
+                class="hover:text-primary transition-colors duration-200"
+            >
+              فروشگاه
+            </router-link>
+          </li>
+        </ul>
+      </nav>
 
+      <div class="flex items-center space-x-4 space-x-reverse">
+        <router-link  to="/cart" class="relative">
+          <a-tooltip title="سبد خرید">
+            <a-button  type="text" shape="circle" size="large">
+              <template #icon>
+                <shopping-cart-outlined class="text-3xl" style="color: white !important;" />
+              </template>
+            </a-button>
+          </a-tooltip>
+          <span
+              v-if="cartStore.totalItems > 0"
+              class="bg-red-500 text-white rounded-full text-xs font-bold absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1"
+          >
+            {{ cartStore.totalItems }}
+          </span>
+        </router-link>
 
-
-        <nav class="">
-          <div class="flex justify-center">
-            <ul class="flex space-x-8">
-              <li>
-                <router-link
-                    to="/"
-                    class=" hover:text-third transition-colors duration-200"
-                >
-                  خانه
-                </router-link>
-              </li>
-              <li>
-                <router-link
-                    to="/shop"
-                    class="hover:text-third transition-colors duration-200"
-                >
-                  فروشگاه
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-
-
-        <div class="flex items-center space-x-4">
-            <div class="relative">
-              <a-tooltip title="سبد خرید">
-                <a-button type="text" shape="circle" size="large">
-                  <template #icon>
-                    <shopping-cart-outlined class="text-xl text-white" />
-                  </template>
-                </a-button>
-              </a-tooltip>
-              <span
-                  class="bg-red-500 text-white rounded-full px-2 text-xs absolute -top-1 -right-1"
-              >0</span
-              >
-            </div>
-          </div>
-      </header>
-
-
-
-
-
-
-
-      <div class="flex-grow flex justify-center pt-5">
-        <a-input-search
-            placeholder="جستجو..."
-            style="width: 500px"
-            @search="onSearch"
-        >
-          <template #prefix>
-            <search-outlined />
-          </template>
-        </a-input-search>
-      </div>    </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import {
   ShoppingCartOutlined,
-  SearchOutlined,
 } from "@ant-design/icons-vue";
+import { useCartStore } from '../store/cartStore';
+import { Button as AButton, Tooltip as ATooltip } from 'ant-design-vue';
+import { useRouter } from 'vue-router';
 
-const onSearch = (value: string) => {
-  console.log("Searching for:", value);
-};
+const cartStore = useCartStore();
+const router = useRouter();
+
 </script>
-
