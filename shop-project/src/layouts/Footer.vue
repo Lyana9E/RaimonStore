@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-primary rounded-xl text-white p-8 mt-10">
+  <footer class="bg-third rounded-xl text-white p-8 mt-10">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 justify-between gap-8">
       <div class="flex flex-col items-center gap-10">
         <router-link to="/">

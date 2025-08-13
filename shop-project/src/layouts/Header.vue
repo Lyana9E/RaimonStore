@@ -1,6 +1,6 @@
 
 <template>
-  <div class="bg-second text-white shadow-lg text-xl">
+  <div class="bg-third text-white shadow-lg text-xl">
     <div class="container mx-auto p-4 flex items-center justify-between">
       <router-link to="/" class="flex-shrink-0">
         <img
