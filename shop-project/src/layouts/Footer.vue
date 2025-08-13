@@ -21,7 +21,7 @@
             <a
                 href="#"
                 target="_blank"
-                class="hover:text-third transition-colors duration-200"
+                class="hover:text-primary transition-colors duration-200"
             >
               <instagram-outlined class="text-2xl" />
             </a>
@@ -30,7 +30,7 @@
             <a
                 href="#"
                 target="_blank"
-                class="hover:text-third transition-colors duration-200"
+                class="hover:text-primary transition-colors duration-200"
             >
               <twitter-outlined class="text-2xl" />
             </a>
@@ -39,7 +39,7 @@
             <a
                 href="#"
                 target="_blank"
-                class="hover:text-third transition-colors duration-200"
+                class="hover:text-primary transition-colors duration-200"
             >
               <facebook-outlined class="text-2xl" />
             </a>
@@ -52,7 +52,7 @@
         <p class="mb-2">
           <a
               href="mailto:AlleyShop@yahoo.com"
-              class="hover:text-third transition-colors duration-200"
+              class="hover:text-primary transition-colors duration-200"
           >
             AlleyShop@yahoo.com
           </a>
@@ -61,7 +61,7 @@
 تلفن :
         <a
             href="tel:09132342323"
-            class="hover:text-third transition-colors duration-200"
+            class="hover:text-primary transition-colors duration-200"
         >
           09132342323
         </a>
