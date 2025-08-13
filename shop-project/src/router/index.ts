@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory,  } from 'vue-router'
-export type AppRouteNames = 'Home' | 'Shop' | 'ProductDetails' | 'Cart' | 'Checkout' | 'NotFound';
+export type AppRouteNames = 'Home' | 'Shop' | 'ProductDetails' | 'Cart' | 'Checkout' |'OrderConfirmation'| 'NotFound';
 
 const routes  = [
     {
@@ -30,6 +30,12 @@ const routes  = [
         component: () => import('../pages/Checkout.vue')
     },
     {
+        path: '/order-confirmation/:orderId',
+        name: 'orderConfirmation',
+        component: () => import('../pages/OrderConfirmation.vue')
+    },
+
+    {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
         component: () => import('../pages/NotFound.vue')
@@ -45,3 +51,6 @@ const router = createRouter({
 })
 
 export default router
+
+
+
