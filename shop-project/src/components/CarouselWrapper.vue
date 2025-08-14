@@ -1,16 +1,23 @@
 <template>
-  <Carousel v-bind="$attrs">
-    <slot name="slides"></slot>
 
-    <template #addons>
-      <slot name="pagination">
-        <Pagination />
-      </slot>
-      <slot v-if="withNavigation" name="navigation">
-        <Navigation />
-      </slot>
-    </template>
-  </Carousel>
+    <Carousel
+        v-bind="$attrs"
+        :autoplay="autoplay"
+        :wrap-around="wrapAround"
+        :transition="transition"
+        :dir="dir"
+    >
+      <slot name="slides"></slot>
+
+      <template #addons>
+        <slot name="pagination">
+          <Pagination />
+        </slot>
+        <slot v-if="withNavigation" name="navigation">
+          <Navigation />
+        </slot>
+      </template>
+    </Carousel>
 </template>
 
 <script setup lang="ts">
@@ -20,7 +27,7 @@ import 'vue3-carousel/dist/carousel.css';
 defineProps({
   autoplay: {
     type: Number,
-    default: 5000,
+    default: 3000,
   },
   wrapAround: {
     type: Boolean,

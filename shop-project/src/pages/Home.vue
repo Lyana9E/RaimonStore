@@ -12,38 +12,48 @@
           </Slide>
         </template>
       </CarouselWrapper>
+
+
+
+
+
+
     </section>
 
     <a-divider class="my-10" />
 
 
+
+
     <section class="mb-10">
       <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">محصولات پرفروش</h2>
 
-      <a-spin :spinning="homeProductStore.isLoading" size="large" tip="در حال بارگذاری محصولات...">
+      <a-spin
+          :spinning="homeProductStore.isLoading"
+          size="large"
+          tip="در حال بارگذاری محصولات..."
+      >
         <div v-if="homeProductStore.error">
-          <a-alert message="خطا" :description="homeProductStore.error" type="error" show-icon />
+          <a-alert
+              message="خطا"
+              :description="homeProductStore.error"
+              type="error"
+              show-icon
+          />
         </div>
         <div v-else>
-          <CarouselWrapper
-              :autoplay="5000"
-              :wrapAround="true"
-              dir="rtl"
-              :breakpoints="productCarouselBreakpoints"
-              :with-navigation="true"
-          >
-            <template #slides>
-              <Slide v-for="product in homeProductStore.featuredProducts" :key="product.id">
-                <div class="carousel__item carousel__item--card">
-                  <ProductCard :product="product" @add-to-cart="handleAddToCart" />
-                </div>
-              </Slide>
-            </template>
-          </CarouselWrapper>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ProductCard
+                v-for="product in homeProductStore.featuredProducts.slice(0, 4)"
+                :key="product.id"
+                :product="product"
+                @add-to-cart="handleAddToCart"
+            />
+          </div>
         </div>
       </a-spin>
-
     </section>
+
   </div>
 </template>
 
@@ -55,8 +65,7 @@ import { bannerSlides } from '../mocks/HomeBannerSlider.ts';
 import CarouselWrapper from "../components/CarouselWrapper.vue";
 import ProductCard from "../components/ProductCard.vue";
 import { Slide } from 'vue3-carousel';
-import { Button as AButton, Divider as ADivider, Spin as ASpin, Alert as AAlert, notification } from 'ant-design-vue';
-
+import {  Divider as ADivider, Spin as ASpin, Alert as AAlert, notification } from 'ant-design-vue';
 const homeProductStore = useHomeProductStore();
 const cartStore = useCartStore();
 
@@ -75,24 +84,6 @@ const handleAddToCart = (product: any) => {
 
 
 
-const productCarouselBreakpoints = {
-  '0': {
-    itemsToShow: 1,
-    snapAlign: 'center',
-  },
-  '640': {
-    itemsToShow: 2,
-    snapAlign: 'start',
-  },
-  '768': {
-    itemsToShow: 3,
-    snapAlign: 'start',
-  },
-  '1024': {
-    itemsToShow: 4,
-    snapAlign: 'start',
-  },
-};
-
 
 </script>
+
