@@ -1,7 +1,9 @@
 <template>
   <router-link :to="{ name: 'ProductDetails', params: { id: product.id } }" class="block">
     <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300">
-      <img :src="product.image" :alt="product.title" class="w-full h-48 object-cover" />
+      <div class="w-full h-48 overflow-hidden flex items-center justify-center">
+      <img :src="product.image" :alt="product.title" class="w-full h-full object-contain p-2" />
+      </div>
       <div class="p-4">
         <h3 class="text-lg text-gray font-semibold truncate">{{ product.title }}</h3>
         <p class="text-primary text-sm mt-1 mb-2">{{ product.category }}</p>
