@@ -32,7 +32,22 @@
       </nav>
 
       <div class="flex items-center space-x-4 space-x-reverse">
+        <a-button
+            type="text"
+            shape="circle"
+            size="large"
+            class="md:hidden"
+            @click="toggleMenu"
+        >
+          <template #icon>
+            <menu-outlined v-if="!isMenuOpen" class="text-2xl " style="color: white !important;"/>
+            <close-outlined v-else class="text-2xl " style="color: indianred !important;"/>
+          </template>
+        </a-button>
+
         <router-link  to="/cart" class="relative">
+          <router-link to="/cart" class="relative">
+          </router-link>
           <a-tooltip title="سبد خرید">
             <a-button  type="text" shape="circle" size="large">
               <template #icon>
@@ -42,7 +57,7 @@
           </a-tooltip>
           <span
               v-if="cartStore.totalItems > 0"
-              class="bg-red-500 text-white rounded-full text-xs font-bold absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1"
+              class=" text-white rounded-full text-xs font-bold absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1"
           >
             {{ cartStore.totalItems }}
           </span>
@@ -56,12 +71,20 @@
 <script lang="ts" setup>
 import {
   ShoppingCartOutlined,
+  MenuOutlined,
+  CloseOutlined,
 } from "@ant-design/icons-vue";
 import { useCartStore } from '../store/cartStore';
 import { Button as AButton, Tooltip as ATooltip } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+
 
 const cartStore = useCartStore();
 const router = useRouter();
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
 
 </script>
