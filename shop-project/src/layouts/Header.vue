@@ -1,6 +1,6 @@
-
 <template>
   <div class="bg-third text-white shadow-lg text-xl">
+    <SideMenu :isOpen="isMenuOpen" @close="toggleMenu"/>
     <div class="container mx-auto p-4 flex items-center justify-between">
       <router-link to="/" class="flex-shrink-0">
         <img
@@ -9,8 +9,7 @@
             class="h-16 w-16 rounded-full object-cover"
         />
       </router-link>
-
-      <nav class="hidden md:block">
+      <nav v-if="isLargeScreen">
         <ul class="flex justify-between gap-10 space-x-8 space-x-reverse font-medium">
           <li>
             <router-link
@@ -30,13 +29,14 @@
           </li>
         </ul>
       </nav>
-
       <div class="flex items-center space-x-4 space-x-reverse">
         <a-button
+            v-if="!isLargeScreen"
+
             type="text"
             shape="circle"
             size="large"
-            class="md:hidden"
+            class="sm:hidden"
             @click="toggleMenu"
         >
           <template #icon>
@@ -44,26 +44,24 @@
             <close-outlined v-else class="text-2xl " style="color: indianred !important;"/>
           </template>
         </a-button>
-
-        <router-link  to="/cart" class="relative">
-          <router-link to="/cart" class="relative">
-          </router-link>
+        <router-link to="/cart" class="relative">
           <a-tooltip title="سبد خرید">
-            <a-button  type="text" shape="circle" size="large">
+            <a-button type="text" shape="circle" size="large">
               <template #icon>
-                <shopping-cart-outlined class="text-3xl" style="color: white !important;" />
+                <shopping-cart-outlined class="text-3xl" style="color: white !important;"/>
               </template>
             </a-button>
           </a-tooltip>
           <span
               v-if="cartStore.totalItems > 0"
-              class=" text-white rounded-full text-xs font-bold absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1"
+              class="text-white rounded-full text-xs font-bold absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1"
           >
             {{ cartStore.totalItems }}
           </span>
         </router-link>
-
       </div>
+
+
     </div>
   </div>
 </template>
@@ -72,13 +70,13 @@
 import {
   ShoppingCartOutlined,
   MenuOutlined,
-  CloseOutlined,
 } from "@ant-design/icons-vue";
-import { useCartStore } from '../store/cartStore';
-import { Button as AButton, Tooltip as ATooltip } from 'ant-design-vue';
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
-
+import {useCartStore} from '../store/cartStore';
+import {Button as AButton, Tooltip as ATooltip} from 'ant-design-vue';
+import {useRouter} from 'vue-router';
+import SideMenu from '../components/SideMenu.vue'
+import {ref, watch} from 'vue';
+import {useBreakpoints, breakpointsAntDesign} from '@vueuse/core';
 
 const cartStore = useCartStore();
 const router = useRouter();
@@ -87,4 +85,15 @@ const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
 };
 
+const breakpoints = useBreakpoints(breakpointsAntDesign);
+const isLargeScreen = breakpoints.md;
+
+watch(isLargeScreen, (newValue) => {
+  if (newValue) {
+    isMenuOpen.value = false;
+  }
+});
 </script>
+
+
+
