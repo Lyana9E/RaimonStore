@@ -1,12 +1,12 @@
 <template>
   <div class="container mx-auto p-4 sm:p-8">
     <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">سبد خرید شما</h1>
-    <a-divider />
+    <aDivider />
 
-    <a-empty v-if="cartStore.cartItems.length === 0" description="سبد خرید شما خالی است." class="mt-12" />
+    <aEmpty v-if="cartStore.cartItems.length === 0" description="سبد خرید شما خالی است." class="mt-12" />
 
     <div v-else>
-      <a-table
+      <aTable
           :columns="columns"
           :data-source="cartStore.cartItems"
           :pagination="false"
@@ -20,9 +20,9 @@
           </template>
 
           <template v-else-if="column.key === 'title'">
-            <router-link :to="{ name: 'ProductDetails', params: { id: record.id } }" class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
+            <routerLink :to="{ name: 'ProductDetails', params: { id: record.id } }" class="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
               {{ record.title }}
-            </router-link>
+            </routerLink>
           </template>
 
           <template v-else-if="column.key === 'price'">
@@ -31,9 +31,9 @@
 
           <template v-else-if="column.key === 'quantity'">
             <div class="flex items-center space-x-2 space-x-reverse">
-              <a-button @click="cartStore.decreaseQuantity(record.id)" :disabled="record.quantity <= 1">-</a-button>
+              <aButton @click="cartStore.decreaseQuantity(record.id)" :disabled="record.quantity <= 1">-</aButton>
               <span class="font-bold w-6 text-center">{{ record.quantity }}</span>
-              <a-button @click="cartStore.increaseQuantity(record.id)">+</a-button>
+              <aButton @click="cartStore.increaseQuantity(record.id)">+</aButton>
             </div>
           </template>
 
@@ -42,22 +42,22 @@
           </template>
 
           <template v-else-if="column.key === 'actions'">
-            <a-button type="link" danger @click="handleRemoveFromCart(record.id)">حذف</a-button>
+            <aButton type="link" danger @click="handleRemoveFromCart(record.id)">حذف</aButton>
           </template>
         </template>
-      </a-table>
+      </aTable>
 
-      <a-divider />
+      <aDivider />
 
       <div class="flex flex-col sm:flex-row justify-between items-center mt-6">
         <div class="text-2xl font-bold mb-4 sm:mb-0">
           مجموع کل: <span class="text-green-600">${{ cartStore.totalPrice.toFixed(2) }}</span>
         </div>
-        <router-link to="/checkout">
-          <a-button type="primary" size="large" class="bg-gray-800 hover:bg-gray-600 transition-colors">
+        <routerLink to="/checkout">
+          <aButton type="primary" size="large" class="bg-gray-800 hover:bg-gray-600 transition-colors">
             ادامه به پرداخت
-          </a-button>
-        </router-link>
+          </aButton>
+        </routerLink>
 
       </div>
     </div>
