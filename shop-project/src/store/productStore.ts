@@ -5,11 +5,10 @@ import type { Product } from '../types'
 
 export const useProductStore = defineStore('product', () => {
 
-
     const products = ref<Product[]>([])
     const selectedProduct = ref<Product | null>(null)
     const searchTerm = ref<string>('')
-    const sortOrder = ref<'asc' | 'desc' | ''>('')
+    const sortOrder = ref<'asc' | 'desc' | null>(null)
     const isLoading = ref<boolean>(false)
     const error = ref<string | null>(null)
 
