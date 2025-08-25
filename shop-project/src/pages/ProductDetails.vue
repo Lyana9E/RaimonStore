@@ -13,8 +13,10 @@
 
       <div v-else-if="productStore.selectedProduct" class="bg-white p-6 rounded-xl shadow-lg mt-8">
         <a-row :gutter="[32, 32]">
-          <a-col :xs="24" :md="12" class="flex justify-center items-center">
+          <a-col :xs="24" :md="12" >
+            <div class="flex justify-center items-center h-80 sm:h-96">
             <a-image :src="productStore.selectedProduct.image" :alt="productStore.selectedProduct.title" class="max-h-96 object-contain" />
+            </div>
           </a-col>
 
           <a-col :xs="24" :md="12">

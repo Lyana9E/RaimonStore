@@ -54,7 +54,7 @@
           </a-tooltip>
           <span
               v-if="cartStore.totalItems > 0"
-              class="text-white rounded-full text-xs font-bold absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1"
+              class="bg-red-600 text-white rounded-full text-xs font-bold absolute -top-1 -right-1 flex items-center justify-center min-w-[20px] h-5 px-1"
           >
             {{ cartStore.totalItems }}
           </span>
