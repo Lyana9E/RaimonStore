@@ -11,7 +11,7 @@
           :data-source="cartStore.cartItems"
           :pagination="false"
           row-key="id"
-          class="mb-8"
+          class="hidden md:table mb-8"
           :row-class-name="() => 'rtl-table-row'"
       >
         <template #bodyCell="{ column, record }">
@@ -46,6 +46,35 @@
           </template>
         </template>
       </aTable>
+      <div class="md:hidden flex flex-col gap-6 mb-8">
+        <div v-for="item in cartStore.cartItems" :key="item.id" class="bg-white p-4 rounded-xl shadow-md">
+          <div class="flex items-center gap-4 mb-4">
+            <img :src="item.image" :alt="item.title" class="w-20 h-20 object-contain rounded-md flex-shrink-0" />
+            <div class="flex-grow">
+              <router-link :to="{ name: 'ProductDetails', params: { id: item.id } }" class="text-lg font-semibold text-gray-800">
+                {{ item.title }}
+              </router-link>
+              <p class="text-sm text-gray-600 mt-1">قیمت واحد: ${{ item.price.toFixed(2) }}</p>
+            </div>
+          </div>
+
+          <a-divider />
+
+          <div class="flex items-center justify-between mt-2">
+            <div class="flex items-center space-x-2 space-x-reverse">
+              <a-button @click="cartStore.decreaseQuantity(item.id)" :disabled="item.quantity <= 1">-</a-button>
+              <span class="font-bold w-6 text-center">{{ item.quantity }}</span>
+              <a-button @click="cartStore.increaseQuantity(item.id)">+</a-button>
+            </div>
+            <span class="text-xl font-bold text-gray-700">
+              ${{ (item.price * item.quantity).toFixed(2) }}
+            </span>
+            <a-button type="link" danger @click="handleRemoveFromCart(item.id)">
+              حذف
+            </a-button>
+          </div>
+        </div>
+      </div>
 
       <aDivider />
 
